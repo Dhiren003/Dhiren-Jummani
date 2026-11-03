@@ -89,7 +89,7 @@
         "editorial_tagline": "Clothes made to be worn for years, not seasons.",
         "editorial_button_label": "SHOP THE DROP",
         "editorial_button_link": "",
-        "editorial_show_account": true,
+        "editorial_show_account": false,
         "customer_account_menu": "customer-account-main-menu",
         "show_search": false,
         "search_position": "right",
