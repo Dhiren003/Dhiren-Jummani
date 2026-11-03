@@ -152,7 +152,6 @@
   endcapture
   %}
 
-  {% if section.settings.editorial_show_account %}
     <div class="loomhaus-header-editorial">
       {% if section.settings.editorial_tagline != blank %}
         <p class="loomhaus-header-editorial__tagline">
@@ -174,8 +173,7 @@
         </a>
       {% endif %}
     </div>
-  {% endif %}
-  
+
   {%  liquid
   capture menu
     content_for 'block', type: '_header-menu', id: 'header-menu'
