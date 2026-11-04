@@ -220,6 +220,27 @@
       data-hydration-key="header-menu"
       data-skip-node-update
     >
+      <div class="loomhaus-header-editorial">
+        {% if section.settings.editorial_tagline != blank %}
+          <p class="loomhaus-header-editorial__tagline">
+            {{ section.settings.editorial_tagline | escape }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.editorial_button_label != blank
+          and section.settings.editorial_button_link != blank
+        %}
+          <a
+            class="loomhaus-header-editorial__button"
+            href="{{ section.settings.editorial_button_link | escape }}"
+          >
+            <span>
+              {{ section.settings.editorial_button_label | escape }}
+            </span>
+            <span aria-hidden="true">→</span>
+          </a>
+        {% endif %}
+      </div>
       <div class="header-menu__inner">
         <nav
           class="menu-list"
