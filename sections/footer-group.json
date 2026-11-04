@@ -295,7 +295,7 @@
       ],
       "name": "t:names.footer",
       "settings": {
-        "section_width": "full-width",
+        "section_width": "page-width",
         "gap": 32,
         "background_color": "#292a26",
         "padding-block-start": 16,
