@@ -58,10 +58,9 @@
         },
         "header-menu": {
           "type": "_header-menu",
-          "disabled": true,
           "static": true,
           "settings": {
-            "menu": "main-menu",
+            "menu": "",
             "background_color": "#f7f5ed",
             "text_color": "#292a26",
             "type_font_primary_size": "0.875rem",
