@@ -177,11 +177,12 @@
 
   .loomhaus-editorial__media-{{ hero_section_id }} {
     position: relative;
+    width: {{ block.settings.image_width_percent }}%;
+    justify-self: center;
     min-width: 0;
     min-height: 340px;
     aspect-ratio: 0.88;
     overflow: hidden;
-    background: #e8e1d7;
   }
 
   .loomhaus-editorial__media-{{ hero_section_id }} img {
@@ -371,14 +372,28 @@
       "default": "Shop now"
     },
     { "type": "url", "id": "button_link", "label": "Button link" },
-    { "type": "image_picker", "id": "hero_image", "label": "Editorial image" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image" },
+    {
+      "type": "range",
+      "id": "image_width_percent",
+      "label": "Image width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
 
     { "type": "header", "content": "Layout and background" },
     {
       "type": "range",
       "id": "desktop_width_percent",
       "label": "Desktop width",
-      "min": 50, "max": 100, "step": 5, "unit": "%", "default": 100
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
     },
     {
       "type": "select",
@@ -409,19 +424,38 @@
     { "type": "color", "id": "eyebrow_color", "label": "Text color", "default": "#FFFFFF" },
     { "type": "color", "id": "eyebrow_background", "label": "Background", "default": "#626658" },
     {
-      "type": "range", "id": "eyebrow_size", "label": "Font size",
-      "min": 9, "max": 24, "step": 1, "unit": "px", "default": 11
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Font size",
+      "min": 9,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 11
     },
     {
-      "type": "range", "id": "eyebrow_spacing", "label": "Letter spacing",
-      "min": 0, "max": 0.3, "step": 0.1, "default": 0.1
+      "type": "range",
+      "id": "eyebrow_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 0.3,
+      "step": 0.1,
+      "default": 0.1
     },
     {
-      "type": "range", "id": "eyebrow_radius", "label": "Corner radius",
-      "min": 0, "max": 50, "step": 1, "unit": "px", "default": 50
+      "type": "range",
+      "id": "eyebrow_radius",
+      "label": "Corner radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 50
     },
     {
-      "type": "select", "id": "eyebrow_case", "label": "Capitalization",
+      "type": "select",
+      "id": "eyebrow_case",
+      "label": "Capitalization",
       "options": [
         { "value": "none", "label": "As entered" },
         { "value": "uppercase", "label": "Uppercase" }
@@ -433,32 +467,65 @@
     { "type": "font_picker", "id": "heading_font", "label": "Font and weight", "default": "assistant_n7" },
     { "type": "color", "id": "heading_color", "label": "Text color", "default": "#28251F" },
     {
-      "type": "range", "id": "heading_size", "label": "Maximum desktop size",
-      "min": 48, "max": 96, "step": 4, "unit": "px", "default": 80
+      "type": "range",
+      "id": "heading_size",
+      "label": "Maximum desktop size",
+      "min": 48,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "default": 80
     },
     {
-      "type": "range", "id": "heading_mobile_size", "label": "Mobile font size",
-      "min": 24, "max": 48, "step": 1, "unit": "px", "default": 44
+      "type": "range",
+      "id": "heading_mobile_size",
+      "label": "Mobile font size",
+      "min": 24,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 44
     },
     {
-      "type": "range", "id": "heading_line_height", "label": "Line height",
-      "min": 0.8, "max": 1.8, "step": 0.1, "default": 1
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Line height",
+      "min": 0.8,
+      "max": 1.8,
+      "step": 0.1,
+      "default": 1
     },
     {
-      "type": "range", "id": "heading_spacing", "label": "Letter spacing",
-      "min": -0.1, "max": 0.2, "step": 0.1, "default": 0
+      "type": "range",
+      "id": "heading_spacing",
+      "label": "Letter spacing",
+      "min": -0.1,
+      "max": 0.2,
+      "step": 0.1,
+      "default": 0
     },
 
     { "type": "header", "content": "Description design" },
     { "type": "font_picker", "id": "description_font", "label": "Font and weight", "default": "assistant_n4" },
     { "type": "color", "id": "description_color", "label": "Text color", "default": "#68655F" },
     {
-      "type": "range", "id": "description_size", "label": "Font size",
-      "min": 12, "max": 28, "step": 1, "unit": "px", "default": 15
+      "type": "range",
+      "id": "description_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 15
     },
     {
-      "type": "range", "id": "description_line_height", "label": "Line height",
-      "min": 1, "max": 2.4, "step": 0.1, "default": 1.7
+      "type": "range",
+      "id": "description_line_height",
+      "label": "Line height",
+      "min": 1,
+      "max": 2.4,
+      "step": 0.1,
+      "default": 1.7
     },
 
     { "type": "header", "content": "Button design" },
@@ -469,19 +536,38 @@
     { "type": "color", "id": "button_hover_background", "label": "Hover background", "default": "#F5F0E8" },
     { "type": "color", "id": "button_hover_color", "label": "Hover text color", "default": "#28251F" },
     {
-      "type": "range", "id": "button_size", "label": "Font size",
-      "min": 10, "max": 24, "step": 1, "unit": "px", "default": 12
+      "type": "range",
+      "id": "button_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 12
     },
     {
-      "type": "range", "id": "button_spacing", "label": "Letter spacing",
-      "min": 0, "max": 0.3, "step": 0.1, "default": 0.1
+      "type": "range",
+      "id": "button_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 0.3,
+      "step": 0.1,
+      "default": 0.1
     },
     {
-      "type": "range", "id": "button_radius", "label": "Corner radius",
-      "min": 0, "max": 50, "step": 1, "unit": "px", "default": 50
+      "type": "range",
+      "id": "button_radius",
+      "label": "Corner radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 50
     },
     {
-      "type": "select", "id": "button_case", "label": "Capitalization",
+      "type": "select",
+      "id": "button_case",
+      "label": "Capitalization",
       "options": [
         { "value": "none", "label": "As entered" },
         { "value": "uppercase", "label": "Uppercase" }
@@ -513,35 +599,69 @@
     { "type": "font_picker", "id": "stat_value_font", "label": "Value font and weight", "default": "assistant_n7" },
     { "type": "color", "id": "stat_value_color", "label": "Value color", "default": "#28251F" },
     {
-      "type": "range", "id": "stat_value_size", "label": "Value font size",
-      "min": 14, "max": 36, "step": 1, "unit": "px", "default": 22
+      "type": "range",
+      "id": "stat_value_size",
+      "label": "Value font size",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 22
     },
     { "type": "font_picker", "id": "stat_label_font", "label": "Label font and weight", "default": "assistant_n4" },
     { "type": "color", "id": "stat_label_color", "label": "Label color", "default": "#68655F" },
     {
-      "type": "range", "id": "stat_label_size", "label": "Label font size",
-      "min": 10, "max": 20, "step": 1, "unit": "px", "default": 12
+      "type": "range",
+      "id": "stat_label_size",
+      "label": "Label font size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 12
     },
     {
-      "type": "range", "id": "stats_gap", "label": "Column gap",
-      "min": 4, "max": 40, "step": 2, "unit": "px", "default": 20
+      "type": "range",
+      "id": "stats_gap",
+      "label": "Column gap",
+      "min": 4,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
     },
     {
-      "type": "range", "id": "stats_margin", "label": "Space above row",
-      "min": 0, "max": 80, "step": 2, "unit": "px", "default": 36
+      "type": "range",
+      "id": "stats_margin",
+      "label": "Space above row",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 36
     },
     {
-      "type": "range", "id": "stats_padding", "label": "Inner padding",
-      "min": 0, "max": 40, "step": 2, "unit": "px", "default": 0
+      "type": "range",
+      "id": "stats_padding",
+      "label": "Inner padding",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
     },
     {
-      "type": "range", "id": "stats_radius", "label": "Corner radius",
-      "min": 0, "max": 40, "step": 2, "unit": "px", "default": 0
+      "type": "range",
+      "id": "stats_radius",
+      "label": "Corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
     }
   ],
-  "presets": [
-    { "name": "Loomhaus editorial" }
-  ],
+  "presets": [{ "name": "Loomhaus editorial" }],
   "tag": null,
   "class": "loomhaus-editorial-block"
 }
