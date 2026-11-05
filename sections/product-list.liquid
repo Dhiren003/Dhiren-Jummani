@@ -34,11 +34,11 @@
       {% paginate section.settings.collection.products by max_items %}
         {% for product in section.settings.collection.products limit: max_items %}
         <div
-          class="resource-list__item"
+          class="resource-list__item loomhaus-card"
         >
             {% content_for 'block',
               type: '_product-card',
-              id: 'static-product-card56',
+              id: 'static-product-card',
               closest.product: product,
               product_view_context: 'collection'
             %}
