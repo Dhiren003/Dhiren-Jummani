@@ -387,8 +387,8 @@
             "hero_image": "shopify://shop_images/hero-image.png",
             "desktop_width_percent": 100,
             "heading_size": 80,
-            "background_color": "rgba(0,0,0,0)",
-            "text_color": "rgba(0,0,0,0)"
+            "background_color": "{{ settings.color_palette.background }}",
+            "text_color": "#292A26"
           },
           "blocks": {}
         }
