@@ -311,7 +311,7 @@
                 "case": "none",
                 "wrap": "pretty",
                 "text_color": "",
-                "background": true,
+                "background": false,
                 "background_color": "{{ settings.color_palette.background }}",
                 "corner_radius": 20,
                 "padding-block-start": 4,
