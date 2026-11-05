@@ -23,7 +23,7 @@
             "hero_image": "shopify://shop_images/hero-image.png",
             "desktop_width_percent": 100,
             "heading_size": 80,
-            "background_color": "{{ settings.color_palette.background }}",
+            "background_color": "#F6F3ED",
             "text_color": "#292A26"
           },
           "blocks": {}
@@ -421,7 +421,7 @@
         "section_width": "page-width",
         "horizontal_alignment": "flex-start",
         "gap": 28,
-        "background_color": "{{ settings.color_palette.background }}",
+        "background_color": "#F6F3ED",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
