@@ -1,11 +1,7 @@
-{% doc %}
-  @prompt
-    Create a responsive fashion homepage block named 'Loomhaus Editorial Homepage', matching this reference description closely. Warm ivory background (
-{% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign hero_section_id = block.id | replace: '_', '' | downcase %}
 
 {% style %}
-  .loomhaus-editorial-{{ ai_gen_id }} {
+  .loomhaus-editorial-{{ hero_section_id }} {
     display: block;
     width: {{ block.settings.desktop_width_percent }}%;
     max-width: 100%;
@@ -16,7 +12,7 @@
     box-sizing: border-box;
   }
 
-  .loomhaus-editorial__layout-{{ ai_gen_id }} {
+  .loomhaus-editorial__layout-{{ hero_section_id }} {
     display: grid;
     grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
     align-items: center;
@@ -25,11 +21,11 @@
     margin: 0 auto;
   }
 
-  .loomhaus-editorial__copy-{{ ai_gen_id }} {
+  .loomhaus-editorial__copy-{{ hero_section_id }} {
     padding: clamp(0px, 2vw, 28px) 0;
   }
 
-  .loomhaus-editorial__eyebrow-{{ ai_gen_id }} {
+  .loomhaus-editorial__eyebrow-{{ hero_section_id }} {
     margin: 0 0 22px;
     color: {{ block.settings.text_color }};
     font-size: 11px;
@@ -37,7 +33,7 @@
     text-transform: uppercase;
   }
 
-  .loomhaus-editorial__heading-{{ ai_gen_id }} {
+  .loomhaus-editorial__heading-{{ hero_section_id }} {
     max-width: 620px;
     margin: 0;
     color: {{ block.settings.text_color }};
@@ -48,7 +44,7 @@
     line-height: 0.98;
   }
 
-  .loomhaus-editorial__description-{{ ai_gen_id }} {
+  .loomhaus-editorial__description-{{ hero_section_id }} {
     max-width: 390px;
     margin: 24px 0 0;
     color: {{ block.settings.text_color }};
@@ -56,7 +52,7 @@
     line-height: 1.7;
   }
 
-  .loomhaus-editorial__link-{{ ai_gen_id }} {
+  .loomhaus-editorial__link-{{ hero_section_id }} {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -73,17 +69,17 @@
     transition: background-color 160ms ease, color 160ms ease;
   }
 
-  .loomhaus-editorial__link-{{ ai_gen_id }}:hover {
+  .loomhaus-editorial__link-{{ hero_section_id }}:hover {
     background: transparent;
     color: {{ block.settings.text_color }};
   }
 
-  .loomhaus-editorial__link-{{ ai_gen_id }}:focus-visible {
+  .loomhaus-editorial__link-{{ hero_section_id }}:focus-visible {
     outline: 2px solid {{ block.settings.text_color }};
     outline-offset: 4px;
   }
 
-  .loomhaus-editorial__media-{{ ai_gen_id }} {
+  .loomhaus-editorial__media-{{ hero_section_id }} {
     position: relative;
     min-height: 340px;
     aspect-ratio: 0.88;
@@ -91,14 +87,14 @@
     background: #e8e1d7;
   }
 
-  .loomhaus-editorial__media-{{ ai_gen_id }} img {
+  .loomhaus-editorial__media-{{ hero_section_id }} img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  .loomhaus-editorial__placeholder-{{ ai_gen_id }} {
+  .loomhaus-editorial__placeholder-{{ hero_section_id }} {
     display: flex;
     width: 100%;
     height: 100%;
@@ -109,7 +105,7 @@
     position: relative;
   }
 
-  .loomhaus-editorial__placeholder-{{ ai_gen_id }} svg {
+  .loomhaus-editorial__placeholder-{{ hero_section_id }} svg {
     width: 100%;
     height: 100%;
     max-height: 700px;
@@ -117,7 +113,7 @@
     color: #8f877d;
   }
 
-  .loomhaus-editorial__empty-{{ ai_gen_id }} {
+  .loomhaus-editorial__empty-{{ hero_section_id }} {
     position: absolute;
     right: 18px;
     bottom: 18px;
@@ -131,59 +127,59 @@
   }
 
   @media screen and (max-width: 749px) {
-    .loomhaus-editorial-{{ ai_gen_id }} {
+    .loomhaus-editorial-{{ hero_section_id }} {
       padding: 28px 20px 36px;
     }
 
-    .loomhaus-editorial__layout-{{ ai_gen_id }} {
+    .loomhaus-editorial__layout-{{ hero_section_id }} {
       grid-template-columns: 1fr;
       gap: 30px;
     }
 
-    .loomhaus-editorial__copy-{{ ai_gen_id }} {
+    .loomhaus-editorial__copy-{{ hero_section_id }} {
       order: 1;
       padding: 0;
     }
 
-    .loomhaus-editorial__media-{{ ai_gen_id }} {
+    .loomhaus-editorial__media-{{ hero_section_id }} {
       order: 2;
       min-height: 260px;
       aspect-ratio: 0.95;
     }
 
-    .loomhaus-editorial__placeholder-{{ ai_gen_id }} {
+    .loomhaus-editorial__placeholder-{{ hero_section_id }} {
       min-height: 260px;
     }
 
-    .loomhaus-editorial__heading-{{ ai_gen_id }} {
+    .loomhaus-editorial__heading-{{ hero_section_id }} {
       font-size: clamp(42px, 13vw, 68px);
     }
   }
 {% endstyle %}
 
-<section class="loomhaus-editorial-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
-  <div class="loomhaus-editorial__layout-{{ ai_gen_id }}">
-    <div class="loomhaus-editorial__copy-{{ ai_gen_id }}">
+<section class="loomhaus-editorial-{{ hero_section_id }}" {{ block.shopify_attributes }}>
+  <div class="loomhaus-editorial__layout-{{ hero_section_id }}">
+    <div class="loomhaus-editorial__copy-{{ hero_section_id }}">
       {% if block.settings.eyebrow != blank %}
-        <p class="loomhaus-editorial__eyebrow-{{ ai_gen_id }}">{{ block.settings.eyebrow | escape }}</p>
+        <p class="loomhaus-editorial__eyebrow-{{ hero_section_id }}">{{ block.settings.eyebrow | escape }}</p>
       {% endif %}
       {% if block.settings.heading != blank %}
-        <h1 class="loomhaus-editorial__heading-{{ ai_gen_id }}">{{ block.settings.heading | escape | newline_to_br }}</h1>
+        <h1 class="loomhaus-editorial__heading-{{ hero_section_id }}">{{ block.settings.heading | escape | newline_to_br }}</h1>
       {% endif %}
       {% if block.settings.description != blank %}
-        <div class="loomhaus-editorial__description-{{ ai_gen_id }}">{{ block.settings.description }}</div>
+        <div class="loomhaus-editorial__description-{{ hero_section_id }}">{{ block.settings.description }}</div>
       {% endif %}
       {% if block.settings.button_label != blank and block.settings.button_link != blank %}
-        <a class="loomhaus-editorial__link-{{ ai_gen_id }}" href="{{ block.settings.button_link }}">{{ block.settings.button_label | escape }}</a>
+        <a class="loomhaus-editorial__link-{{ hero_section_id }}" href="{{ block.settings.button_link }}">{{ block.settings.button_label | escape }}</a>
       {% endif %}
     </div>
-    <div class="loomhaus-editorial__media-{{ ai_gen_id }}">
+    <div class="loomhaus-editorial__media-{{ hero_section_id }}">
       {% if block.settings.hero_image != blank %}
         <img src="{{ block.settings.hero_image | image_url: width: 1800 }}" alt="{{ block.settings.hero_image.alt | default: block.settings.heading | escape }}" loading="lazy" width="{{ block.settings.hero_image.width }}" height="{{ block.settings.hero_image.height }}">
       {% else %}
-        <div class="loomhaus-editorial__placeholder-{{ ai_gen_id }}">
+        <div class="loomhaus-editorial__placeholder-{{ hero_section_id }}">
           {{ 'image' | placeholder_svg_tag }}
-          <p class="loomhaus-editorial__empty-{{ ai_gen_id }}">Add an editorial fashion image to complete this feature.</p>
+          <p class="loomhaus-editorial__empty-{{ hero_section_id }}">Add an editorial fashion image to complete this feature.</p>
         </div>
       {% endif %}
     </div>
