@@ -14,6 +14,7 @@
       "blocks": {
         "ai_gen_block_a4f9e63_jEKGM3": {
           "type": "ai_gen_block_a4f9e63",
+          "name": "Hero Section",
           "settings": {
             "eyebrow": "NEW SEASON  ·  AUTUMN / WINTER",
             "heading": "The Winter Edit",
@@ -23,8 +24,8 @@
             "hero_image": "shopify://shop_images/hero-image.png",
             "desktop_width_percent": 100,
             "heading_size": 80,
-            "background_color": "#F6F3ED",
-            "text_color": "#292A26"
+            "background_color": "#f6f3ed",
+            "text_color": "#292a26"
           },
           "blocks": {}
         }
@@ -421,7 +422,7 @@
         "section_width": "page-width",
         "horizontal_alignment": "flex-start",
         "gap": 28,
-        "background_color": "#F6F3ED",
+        "background_color": "#f6f3ed",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
