@@ -379,15 +379,16 @@
         "ai_gen_block_a4f9e63_jEKGM3": {
           "type": "ai_gen_block_a4f9e63",
           "settings": {
-            "eyebrow": "THE NEW SEASON",
-            "heading": "Quiet pieces.\nLasting presence.",
-            "description": "<p>Considered essentials for the way you move through every day. Discover thoughtful fabrics, effortless shapes, and a softer approach to getting dressed.</p>",
-            "button_label": "Explore the collection",
-            "button_link": "",
+            "eyebrow": "NEW SEASON  ·  AUTUMN / WINTER",
+            "heading": "The Winter Edit",
+            "description": "<p>Warm layers, honest fabrics and fits that work every day. Discover the pieces our community wears on repeat this season.</p>",
+            "button_label": "Shop Now",
+            "button_link": "shopify://collections/all",
+            "hero_image": "shopify://shop_images/hero-image.png",
             "desktop_width_percent": 100,
             "heading_size": 80,
-            "background_color": "#f5f0e8",
-            "text_color": "#28251f"
+            "background_color": "rgba(0,0,0,0)",
+            "text_color": "rgba(0,0,0,0)"
           },
           "blocks": {}
         }
@@ -404,7 +405,7 @@
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 12,
-        "section_width": "page-width",
+        "section_width": "full-width",
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
