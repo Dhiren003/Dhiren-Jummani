@@ -34,6 +34,29 @@
         text_color: block_settings.text_color_navigation_bar,
         section_id: block.id
       %}
+
+      <div class="loomhaus-header-editorial">
+        {% if section.settings.editorial_tagline != blank %}
+          <p class="loomhaus-header-editorial__tagline">
+            {{ section.settings.editorial_tagline | escape }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.editorial_button_label != blank
+          and section.settings.editorial_button_link != blank
+        %}
+          <a
+            class="loomhaus-header-editorial__button"
+            href="{{ section.settings.editorial_button_link | escape }}"
+          >
+            <span>
+              {{ section.settings.editorial_button_label | escape }}
+            </span>
+            <span aria-hidden="true">→</span>
+          </a>
+        {% endif %}
+      </div>
+
       <div
         class="menu-list menu-list--mobile{% if transparent == blank %} color-custom-{{ block.id }}{% endif %}"
         style="--menu-horizontal-gap: 15px; --mobile-nav-margin: auto;"
@@ -197,6 +220,27 @@
       data-hydration-key="header-menu"
       data-skip-node-update
     >
+      <div class="loomhaus-header-editorial">
+        {% if section.settings.editorial_tagline != blank %}
+          <p class="loomhaus-header-editorial__tagline">
+            {{ section.settings.editorial_tagline | escape }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.editorial_button_label != blank
+          and section.settings.editorial_button_link != blank
+        %}
+          <a
+            class="loomhaus-header-editorial__button"
+            href="{{ section.settings.editorial_button_link | escape }}"
+          >
+            <span>
+              {{ section.settings.editorial_button_label | escape }}
+            </span>
+            <span aria-hidden="true">→</span>
+          </a>
+        {% endif %}
+      </div>
       <div class="header-menu__inner">
         <nav
           class="menu-list"

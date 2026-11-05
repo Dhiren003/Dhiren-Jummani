@@ -1,0 +1,668 @@
+{% assign hero_section_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  {% assign font_parts = 'eyebrow,heading,description,button,stat_value,stat_label' | split: ',' %}
+  {% for part in font_parts %}
+    {% assign font_key = part | append: '_font' %}
+    {{ block.settings[font_key] | font_face: font_display: 'swap' }}
+  {% endfor %}
+
+  .loomhaus-editorial-{{ hero_section_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: clamp(28px, 5vw, 76px);
+    box-sizing: border-box;
+    background: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+  }
+
+  .loomhaus-editorial-{{ hero_section_id }} *,
+  .loomhaus-editorial-{{ hero_section_id }} *::before,
+  .loomhaus-editorial-{{ hero_section_id }} *::after {
+    box-sizing: border-box;
+  }
+
+  .loomhaus-editorial__layout-{{ hero_section_id }} {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    align-items: center;
+    gap: clamp(28px, 6vw, 88px);
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .loomhaus-editorial__copy-{{ hero_section_id }} {
+    min-width: 0;
+    padding: clamp(0px, 2vw, 28px) 0;
+    text-align: {{ block.settings.copy_alignment }};
+  }
+
+  {% for part in font_parts %}
+    {% assign font_key = part | append: '_font' %}
+    {% assign color_key = part | append: '_color' %}
+    {% assign font = block.settings[font_key] %}
+    .loomhaus-editorial__{{ part | replace: '_', '-' }}-{{ hero_section_id }} {
+      font-family: {{ font.family }}, {{ font.fallback_families }};
+      font-style: {{ font.style }};
+      font-weight: {{ font.weight }};
+      color: {{ block.settings[color_key] }};
+    }
+  {% endfor %}
+
+  .loomhaus-editorial__eyebrow-{{ hero_section_id }} {
+    display: inline-block;
+    max-width: 100%;
+    margin: 0 0 22px;
+    padding: 6px 12px;
+    border-radius: {{ block.settings.eyebrow_radius }}px;
+    background: {{ block.settings.eyebrow_background }};
+    font-size: {{ block.settings.eyebrow_size }}px;
+    letter-spacing: {{ block.settings.eyebrow_spacing }}em;
+    line-height: 1.4;
+    text-transform: {{ block.settings.eyebrow_case }};
+    overflow-wrap: anywhere;
+  }
+
+  .loomhaus-editorial__heading-{{ hero_section_id }} {
+    max-width: 620px;
+    margin: 0;
+    font-size: clamp(
+      {{ block.settings.heading_mobile_size }}px,
+      6.7vw,
+      {{ block.settings.heading_size }}px
+    );
+    letter-spacing: {{ block.settings.heading_spacing }}em;
+    line-height: {{ block.settings.heading_line_height }};
+    overflow-wrap: anywhere;
+  }
+
+  .loomhaus-editorial__description-{{ hero_section_id }} {
+    max-width: 390px;
+    margin: 24px 0 0;
+    font-size: {{ block.settings.description_size }}px;
+    line-height: {{ block.settings.description_line_height }};
+    overflow-wrap: anywhere;
+  }
+
+  .loomhaus-editorial__description-{{ hero_section_id }} > :first-child {
+    margin-top: 0;
+  }
+
+  .loomhaus-editorial__description-{{ hero_section_id }} > :last-child {
+    margin-bottom: 0;
+  }
+
+  .loomhaus-editorial__description-{{ hero_section_id }} a {
+    color: inherit;
+  }
+
+  {% if block.settings.copy_alignment == 'center' %}
+    .loomhaus-editorial__heading-{{ hero_section_id }},
+    .loomhaus-editorial__description-{{ hero_section_id }} {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  {% elsif block.settings.copy_alignment == 'right' %}
+    .loomhaus-editorial__heading-{{ hero_section_id }},
+    .loomhaus-editorial__description-{{ hero_section_id }} {
+      margin-left: auto;
+    }
+  {% endif %}
+
+  .loomhaus-editorial__button-{{ hero_section_id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 100%;
+    min-height: 48px;
+    margin-top: 30px;
+    padding: 12px 24px;
+    border: 1px solid {{ block.settings.button_border }};
+    border-radius: {{ block.settings.button_radius }}px;
+    background: {{ block.settings.button_background }};
+    font-size: {{ block.settings.button_size }}px;
+    letter-spacing: {{ block.settings.button_spacing }}em;
+    line-height: 1.3;
+    text-decoration: none;
+    text-transform: {{ block.settings.button_case }};
+    transition: background-color 160ms ease, color 160ms ease;
+  }
+
+  .loomhaus-editorial__button-{{ hero_section_id }}:hover {
+    background: {{ block.settings.button_hover_background }};
+    color: {{ block.settings.button_hover_color }};
+  }
+
+  .loomhaus-editorial__button-{{ hero_section_id }}:focus-visible {
+    outline: 2px solid {{ block.settings.text_color }};
+    outline-offset: 4px;
+  }
+
+  .loomhaus-editorial__button-{{ hero_section_id }} svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .loomhaus-editorial__stats-{{ hero_section_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: {{ block.settings.stats_gap }}px;
+    margin-top: {{ block.settings.stats_margin }}px;
+    padding: {{ block.settings.stats_padding }}px;
+    border-radius: {{ block.settings.stats_radius }}px;
+    background: {{ block.settings.stats_background }};
+    text-align: {{ block.settings.copy_alignment }};
+  }
+
+  .loomhaus-editorial__stat-{{ hero_section_id }} {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .loomhaus-editorial__stat-value-{{ hero_section_id }} {
+    margin: 0;
+    font-size: {{ block.settings.stat_value_size }}px;
+    line-height: 1.2;
+  }
+
+  .loomhaus-editorial__stat-label-{{ hero_section_id }} {
+    margin: 5px 0 0;
+    font-size: {{ block.settings.stat_label_size }}px;
+    line-height: 1.4;
+  }
+
+  .loomhaus-editorial__media-{{ hero_section_id }} {
+    position: relative;
+    width: {{ block.settings.image_width_percent }}%;
+    justify-self: center;
+    min-width: 0;
+    min-height: 340px;
+    aspect-ratio: 0.88;
+    overflow: hidden;
+  }
+
+  .loomhaus-editorial__media-{{ hero_section_id }} img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .loomhaus-editorial__placeholder-{{ hero_section_id }} {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+    align-items: center;
+    justify-content: center;
+    background: #e8e1d7;
+  }
+
+  .loomhaus-editorial__placeholder-{{ hero_section_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-height: 700px;
+    color: #8f877d;
+  }
+
+  .loomhaus-editorial__empty-{{ hero_section_id }} {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    left: 18px;
+    margin: 0;
+    padding: 10px 12px;
+    background: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+    font-size: 12px;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 749px) {
+    .loomhaus-editorial-{{ hero_section_id }} {
+      width: 100%;
+      padding: 28px 20px 36px;
+    }
+
+    .loomhaus-editorial__layout-{{ hero_section_id }} {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .loomhaus-editorial__copy-{{ hero_section_id }} {
+      padding: 0;
+    }
+
+    .loomhaus-editorial__heading-{{ hero_section_id }} {
+      font-size: {{ block.settings.heading_mobile_size }}px;
+    }
+
+    .loomhaus-editorial__media-{{ hero_section_id }} {
+      min-height: 260px;
+      aspect-ratio: 0.95;
+    }
+
+    .loomhaus-editorial__placeholder-{{ hero_section_id }} {
+      min-height: 260px;
+    }
+  }
+{% endstyle %}
+
+<section
+  class="loomhaus-editorial-{{ hero_section_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="loomhaus-editorial__layout-{{ hero_section_id }}">
+    <div class="loomhaus-editorial__copy-{{ hero_section_id }}">
+      {% if block.settings.eyebrow != blank %}
+        <p class="loomhaus-editorial__eyebrow-{{ hero_section_id }}">
+          {{ block.settings.eyebrow | escape }}
+        </p>
+      {% endif %}
+
+      {% if block.settings.heading != blank %}
+        <h1 class="loomhaus-editorial__heading-{{ hero_section_id }}">
+          {{ block.settings.heading | escape | newline_to_br }}
+        </h1>
+      {% endif %}
+
+      {% if block.settings.description != blank %}
+        <div class="loomhaus-editorial__description-{{ hero_section_id }}">
+          {{ block.settings.description }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+        <a
+          class="loomhaus-editorial__button-{{ hero_section_id }}"
+          href="{{ block.settings.button_link | escape }}"
+        >
+          <span>{{ block.settings.button_label | escape }}</span>
+          {% if block.settings.show_button_arrow %}
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M4 12h16M14 6l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          {% endif %}
+        </a>
+      {% endif %}
+
+      {% if block.settings.show_stats %}
+        <div class="loomhaus-editorial__stats-{{ hero_section_id }}">
+          {% for i in (1..3) %}
+            {% assign value_key = 'stat_' | append: i | append: '_value' %}
+            {% assign label_key = 'stat_' | append: i | append: '_label' %}
+            {% if block.settings[value_key] != blank or block.settings[label_key] != blank %}
+              <div class="loomhaus-editorial__stat-{{ hero_section_id }}">
+                {% if block.settings[value_key] != blank %}
+                  <p class="loomhaus-editorial__stat-value-{{ hero_section_id }}">
+                    {{ block.settings[value_key] | escape }}
+                  </p>
+                {% endif %}
+                {% if block.settings[label_key] != blank %}
+                  <p class="loomhaus-editorial__stat-label-{{ hero_section_id }}">
+                    {{ block.settings[label_key] | escape }}
+                  </p>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="loomhaus-editorial__media-{{ hero_section_id }}">
+      {% if block.settings.hero_image != blank %}
+        <img
+          src="{{ block.settings.hero_image | image_url: width: 1800 }}"
+          alt="{{ block.settings.hero_image.alt | default: block.settings.heading | escape }}"
+          loading="lazy"
+          width="{{ block.settings.hero_image.width }}"
+          height="{{ block.settings.hero_image.height }}"
+        >
+      {% else %}
+        <div class="loomhaus-editorial__placeholder-{{ hero_section_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+          <p class="loomhaus-editorial__empty-{{ hero_section_id }}">
+            Add an editorial fashion image to complete this feature.
+          </p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Loomhaus editorial",
+  "settings": [
+    { "type": "header", "content": "Editorial content" },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "NEW SEASON · AUTUMN / WINTER"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Headline",
+      "default": "The Winter\nEdit"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Warm layers, honest fabrics and fits that work every day. Discover the pieces our community wears on repeat this season.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop now"
+    },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image" },
+    {
+      "type": "range",
+      "id": "image_width_percent",
+      "label": "Image width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+
+    { "type": "header", "content": "Layout and background" },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "copy_alignment",
+      "label": "Content alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#F5F0E8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Fallback text and focus outline",
+      "default": "#28251F"
+    },
+
+    { "type": "header", "content": "Eyebrow design" },
+    { "type": "font_picker", "id": "eyebrow_font", "label": "Font and weight", "default": "assistant_n7" },
+    { "type": "color", "id": "eyebrow_color", "label": "Text color", "default": "#FFFFFF" },
+    { "type": "color", "id": "eyebrow_background", "label": "Background", "default": "#626658" },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Font size",
+      "min": 9,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 0.3,
+      "step": 0.1,
+      "default": 0.1
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_radius",
+      "label": "Corner radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "select",
+      "id": "eyebrow_case",
+      "label": "Capitalization",
+      "options": [
+        { "value": "none", "label": "As entered" },
+        { "value": "uppercase", "label": "Uppercase" }
+      ],
+      "default": "uppercase"
+    },
+
+    { "type": "header", "content": "Headline design" },
+    { "type": "font_picker", "id": "heading_font", "label": "Font and weight", "default": "assistant_n7" },
+    { "type": "color", "id": "heading_color", "label": "Text color", "default": "#28251F" },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Maximum desktop size",
+      "min": 48,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "heading_mobile_size",
+      "label": "Mobile font size",
+      "min": 24,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Line height",
+      "min": 0.8,
+      "max": 1.8,
+      "step": 0.1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "label": "Letter spacing",
+      "min": -0.1,
+      "max": 0.2,
+      "step": 0.1,
+      "default": 0
+    },
+
+    { "type": "header", "content": "Description design" },
+    { "type": "font_picker", "id": "description_font", "label": "Font and weight", "default": "assistant_n4" },
+    { "type": "color", "id": "description_color", "label": "Text color", "default": "#68655F" },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "description_line_height",
+      "label": "Line height",
+      "min": 1,
+      "max": 2.4,
+      "step": 0.1,
+      "default": 1.7
+    },
+
+    { "type": "header", "content": "Button design" },
+    { "type": "font_picker", "id": "button_font", "label": "Font and weight", "default": "assistant_n7" },
+    { "type": "color", "id": "button_color", "label": "Text color", "default": "#FFFFFF" },
+    { "type": "color", "id": "button_background", "label": "Background", "default": "#28251F" },
+    { "type": "color", "id": "button_border", "label": "Border color", "default": "#28251F" },
+    { "type": "color", "id": "button_hover_background", "label": "Hover background", "default": "#F5F0E8" },
+    { "type": "color", "id": "button_hover_color", "label": "Hover text color", "default": "#28251F" },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 0.3,
+      "step": 0.1,
+      "default": 0.1
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Corner radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "select",
+      "id": "button_case",
+      "label": "Capitalization",
+      "options": [
+        { "value": "none", "label": "As entered" },
+        { "value": "uppercase", "label": "Uppercase" }
+      ],
+      "default": "uppercase"
+    },
+    { "type": "checkbox", "id": "show_button_arrow", "label": "Show arrow", "default": true },
+
+    { "type": "header", "content": "Bottom row content" },
+    {
+      "type": "checkbox",
+      "id": "show_stats",
+      "label": "Show bottom row",
+      "default": false
+    },
+    {
+      "type": "paragraph",
+      "content": "Example claims only. Verify ratings, review count, materials and return terms before displaying."
+    },
+    { "type": "text", "id": "stat_1_value", "label": "First value", "default": "4.8★" },
+    { "type": "text", "id": "stat_1_label", "label": "First label", "default": "2,000+ reviews" },
+    { "type": "text", "id": "stat_2_value", "label": "Second value", "default": "100%" },
+    { "type": "text", "id": "stat_2_label", "label": "Second label", "default": "organic cotton" },
+    { "type": "text", "id": "stat_3_value", "label": "Third value", "default": "30 days" },
+    { "type": "text", "id": "stat_3_label", "label": "Third label", "default": "free returns" },
+
+    { "type": "header", "content": "Bottom row design" },
+    { "type": "color", "id": "stats_background", "label": "Background" },
+    { "type": "font_picker", "id": "stat_value_font", "label": "Value font and weight", "default": "assistant_n7" },
+    { "type": "color", "id": "stat_value_color", "label": "Value color", "default": "#28251F" },
+    {
+      "type": "range",
+      "id": "stat_value_size",
+      "label": "Value font size",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    { "type": "font_picker", "id": "stat_label_font", "label": "Label font and weight", "default": "assistant_n4" },
+    { "type": "color", "id": "stat_label_color", "label": "Label color", "default": "#68655F" },
+    {
+      "type": "range",
+      "id": "stat_label_size",
+      "label": "Label font size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "stats_gap",
+      "label": "Column gap",
+      "min": 4,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "stats_margin",
+      "label": "Space above row",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "stats_padding",
+      "label": "Inner padding",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "stats_radius",
+      "label": "Corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [{ "name": "Loomhaus editorial" }],
+  "tag": null,
+  "class": "loomhaus-editorial-block"
+}
+{% endschema %}
